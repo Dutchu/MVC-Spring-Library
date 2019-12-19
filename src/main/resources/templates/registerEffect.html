@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot and Thymeleaf example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<h3>Poprawnie zarejestrowano użytkownika</h3>
+
+<tr>
+    <td>Imię:</td>
+    <p th:text="${form.firstName}"/>
+</tr>
+<tr>
+    <td>Nazwisko:</td>
+    <p th:text="${form.lastName}"/>
+</tr>
+<tr>
+    <td>Data urodzenia:</td>
+    <p th:text="${form.birthDate}"/>
+</tr>
+<tr>
+    <td>Email:</td>
+    <p th:text="${form.email}"/>
+</tr>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
