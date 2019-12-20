@@ -18,7 +18,21 @@ public class BookDAO {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> listAll() {
-        return this.bookRepository.findAll();
+    public List<Book> listAllByHirer(String email) {
+        return bookRepository.findByHirerOrderByHirer(email);
     }
+
+    public List<Book> listAll() {
+        return this.bookRepository.findAllByOrderByTitle();
+    }
+
+    public Book findByTitle(String title) {
+        return  this.bookRepository.findByTitle(title);
+    }
+
+    public void updateBook(Book updatedBook){
+        this.bookRepository.save(updatedBook);
+    }
+
+
 }

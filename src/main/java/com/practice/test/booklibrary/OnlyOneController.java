@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.practice.test.booklibrary.user.*;
@@ -30,8 +31,8 @@ public class OnlyOneController {
     private LoginService loginService;
     @Autowired
     private RegistrationService registrationService;
-
-    private List<String> history = new ArrayList<>();
+    @Autowired
+    private UserContextHolder userContextHolder;
 
 
     @RequestMapping("/")
@@ -39,12 +40,6 @@ public class OnlyOneController {
         return "index";
     }
 
-    @RequestMapping(value = "/books-all", method = RequestMethod.GET)
-    public String allBooks(Model model){
-        List<Book> listBooks  = bookService.listAll();
-        model.addAttribute("listBooks", listBooks);
-        return "allBooks";
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model) {//model zapewniony przez Spring
@@ -92,6 +87,36 @@ public class OnlyOneController {
         UserContextHolder.logout();
         return "index";
     }
+
+    @RequestMapping(value = "/books-all", method = RequestMethod.GET)
+    public String allBooks(Model model){
+        List<Book> listBooks  = bookService.listAll();
+        model.addAttribute("listBooks", listBooks);
+        return "allBooks";
+    }
+
+    @RequestMapping(value = "/your-books", method = RequestMethod.GET)
+    public String yourBooks(Model model){
+        List<Book> yourBooks  = bookService.listAllForEmail();
+        model.addAttribute("yourBooks", yourBooks);
+        return "yourBooks";
+    }
+
+    @RequestMapping(value = "/rent", method = RequestMethod.GET)
+    public String allBooksAvailable(Model model){
+        List<Book> allAvailableBooks = bookService.listAllAvailable();
+        model.addAttribute("allAvailableBooks", allAvailableBooks);
+        return "rentPage";
+    }
+//    @RequestMapping(value = "/rentEffect", method = RequestMethod.POST)
+//    public String rentABook(Model model){
+//        String title = "1";
+//        boolean ifRentABook = bookService.ifRentABook;
+//        model.addAttribute("title", title);
+//        model.addAttribute("ifRentABook", ifRentABook);
+//
+//        return "rentEffect";
+//    }
 
     private String tryToRegisterUser(RegistrationDTO registrationDTO, Model model) {
         try {

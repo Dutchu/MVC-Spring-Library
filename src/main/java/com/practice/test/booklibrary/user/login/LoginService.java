@@ -2,7 +2,6 @@ package com.practice.test.booklibrary.user.login;
 
 import com.practice.test.booklibrary.user.repository.UserDAO;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class LoginService {
@@ -13,8 +12,7 @@ public class LoginService {
     }
 
     public boolean login(LoginDTO dto){
-        return userDAO.findUserByEmail(dto.getLogin())
-                .map(e -> e.getEmail().equals(dto.getLogin()))
-                .orElse(false);
+
+        return userDAO.existsByEmail(dto.getLogin());
     }
 }

@@ -11,8 +11,9 @@
 <div th:fragment="header">
     <!-- this is header -->
     <div class="topnav">
-        <a  th:if="${@userContextHolder.getUserLoggedIn()}"  href="/books-all">All Books</a>
-        <a th:if="${@userContextHolder.getUserLoggedIn()}" href="/your-books">Your Books</a>
+        <a  th:if="${@userContextHolder.getUserLoggedIn()}"  href="/books-all">Wszystie Książki</a>
+        <a th:if="${@userContextHolder.getUserLoggedIn()}" href="/your-books">Twoje Książki</a>
+        <a th:if="${@userContextHolder.getUserLoggedIn()}" href="/rent" style="float: right;color: white">Wypożycz</a>
         <a th:if="!${@userContextHolder.getUserLoggedIn()}" href="/register">Rejestracja</a>
         <a th:if="!${@userContextHolder.getUserLoggedIn()}" href="/login">Login</a>
         <a th:if="${@userContextHolder.getUserLoggedIn()}" href="/logout" style="float: right;color: white">Wyloguj</a>

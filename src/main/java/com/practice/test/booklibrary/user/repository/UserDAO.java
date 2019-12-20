@@ -25,15 +25,19 @@ public class UserDAO {
         return userRepository != null ? userRepository.findAll() : new ArrayList<>();
     }
 
-    public boolean emailExists(String email) {
-        return Optional.ofNullable(this.userRepository.findByEmail(email)).isPresent();
+    public User findUserByEmail(String email){
+        return this.userRepository.findByEmail(email);
     }
 
-    public Optional<User> findUserByEmail(String login) {
-        return Optional.ofNullable(this.userRepository.findByEmail(login));
+    public boolean existsByEmail(String login) {
+        return this.userRepository.existsByEmail(login);
     }
 
     public void saveUser(User user) {
         this.userRepository.insert(user);
+    }
+
+    public void updateUser(User user) {
+        this.userRepository.save(user);
     }
 }

@@ -19,6 +19,7 @@ public class Book {
     private Boolean availability;
     private String hirer;
 
+
     public Book(String title, String genre, Integer releaseDate, Boolean availability, String hirer) {
         this.title = title;
         this.genre = genre;
@@ -26,4 +27,6 @@ public class Book {
         this.availability = availability;
         this.hirer = hirer;
     }
+
+
 }

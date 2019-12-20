@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <div th:replace="fragments/header :: header-css"/>
+    <!-- Bootstrap core CSS -->
+    <!--<link rel="stylesheet" th:href="@{/main.css}"/></head>-->
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"/>
+<p class="info" th:if="${logoutMessage}" th:text="${logoutMessage}"/>
+<div layout:fragment="content" align="center">
+    <!--    private String title;-->
+    <!--    private String genre;-->
+    <!--    private Integer releaseDate;-->
+    <!--    private Boolean availability;-->
+    <!--    private String hirer;-->
+    <h1 style="color: deeppink">ALL BOOKS</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>title</th>
+            <th>genre</th>
+            <th>release date</th>
+            <th>availability</th>
+            <th>hirer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${yourBooks}">
+            <td th:text="${book.title}">book title</td>
+            <td th:text="${book.genre}">book.genre</td>
+            <td th:text="${book.releaseDate}">book releaseDate</td>
+            <td th:text="${book.availability}">book availability</td>
+            <td th:text="${book.hirer}">book hirer</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

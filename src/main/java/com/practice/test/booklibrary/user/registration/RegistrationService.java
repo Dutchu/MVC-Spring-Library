@@ -14,7 +14,7 @@ public class RegistrationService {
     }
 
     public void register(RegistrationDTO dto) {
-        if (userDAO.emailExists(dto.getEmail())) {
+        if (userDAO.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("Email istnieje: " + dto.getEmail());
         }
 
